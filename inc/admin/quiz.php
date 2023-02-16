@@ -1,8 +1,15 @@
 <?php
 
+use WordPlate\Acf\Fields\Repeater;
+use WordPlate\Acf\Fields\Select;
+use WordPlate\Acf\Fields\Text;
+use WordPlate\Acf\Fields\Textarea;
+use WordPlate\Acf\Location;
+
 class Amphibee_RH_Questionnaire {
     public function __construct() {
         register_post_type( 'questionnaire', $this->post_type_args() );
+        Action::add('acf/init', $this->register_quiz_fields());
     }
 
     /**
@@ -37,10 +44,30 @@ class Amphibee_RH_Questionnaire {
         return $args;
     }
 
-    public function disable_seo_analysis( ): array
+    public static function register_quiz_fields()
     {
-        global $post_types;
-        $post_types[] = 'questionnaire';
-        return $post_types;
+        if (function_exists(('register_extended_field_group')) && function_exists('register_field_group') ) {
+            register_extended_field_group([
+                'title' => 'Questionnaire RH',
+                'fields' => [
+                    Repeater::make(__('Listes des questions', 'amphibee-rh'), 'listing_quiz')
+                        ->fields([
+                            Text::make(__('Question', 'amphibee-rh'), 'question')
+                                ->wrapper(['width' => '40%']),
+                            Select::make(__('Type de réponse', 'amphibee-rh'), 'type_answer')
+                                ->choices([
+                                    'short_text' => 'Réponse courte textuelle',
+                                    'long_text' => 'Réponse longue textuelle'
+                                ])
+                                ->wrapper(['width' => '20%'])
+                                ->required(),
+                        ])
+                ],
+                'layout' => 'block',
+                'location' => [
+                    Location::if('post_type', '==', 'questionnaire'),
+                ],
+            ]);
+        }
     }
 }

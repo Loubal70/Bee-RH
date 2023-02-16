@@ -1,10 +1,13 @@
 <?php
 
+use Themosis\Support\Facades\Action;
+
 class Bee_RH_Settings
 {
     public function __construct()
     {
-        add_action('admin_menu', array($this, 'add_settings_page'));
+        Action::add('admin_menu', [$this, 'add_settings_page']);
+
     }
 
     public function add_settings_page()
@@ -27,14 +30,17 @@ class Bee_RH_Settings
         echo $content;
     }
 
-    private function load_view($view)
+    public function load_view($view)
     {
-        wp_enqueue_style('bee-rh-tailwind', AMPHIBEE_RH_PLUGIN_URL . 'assets/css/tailwind.out.css');
+        if($view === 'settings'){
+            wp_enqueue_style('bee-rh-tailwind', AMPHIBEE_RH_PLUGIN_URL . 'assets/css/tailwind.out.css');
+        }
 
         // Charger le contenu de la vue en utilisant Blade
         $path = AMPHIBEE_RH_PLUGIN_PATH . 'views/' . $view . '.blade.php';
         $blade = new \Jenssegers\Blade\Blade(dirname($path), 'php');
         return $blade->render($view);
     }
+
 
 }

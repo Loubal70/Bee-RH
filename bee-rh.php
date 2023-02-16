@@ -17,20 +17,3 @@ define('AMPHIBEE_RH_PLUGIN_URL', plugin_dir_url(__FILE__));
 require_once(__DIR__ . '/vendor/autoload.php');
 
 require_once(AMPHIBEE_RH_PLUGIN_PATH . 'inc/main.php');
-
-function create_posttype() {
-    register_post_type( 'news',
-// CPT Options
-        array(
-            'labels' => array(
-                'name' => __( 'news' ),
-                'singular_name' => __( 'News' )
-            ),
-            'public' => true,
-            'has_archive' => false,
-            'rewrite' => array('slug' => 'news'),
-        )
-    );
-}
-//// Hooking up our function to theme setup
-//add_action( 'init', 'create_posttype' );
