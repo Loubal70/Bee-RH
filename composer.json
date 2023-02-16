@@ -1,0 +1,16 @@
+{
+    "name": "amphibee/bee-rh",
+    "require": {
+        "jenssegers/blade": "1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Amphibee\\BeeRh\\": "inc/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Louis BOULANGEr"
+        }
+    ]
+}

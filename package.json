@@ -1,0 +1,13 @@
+{
+  "name": "bee-rh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwind build assets/css/tailwind.css -o assets/css/tailwind.out.css",
+    "start": "tailwindcss -i assets/css/tailwind.css -o assets/css/tailwind.out.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.5"
+  }
+}
