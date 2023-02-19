@@ -1,12 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./views/**/*.blade.php"],
+  content: [
+      './resources/**/*.php',
+    './inc/**/*.php',
+    './views/**/*.php',
+    './assets/js/**/*.js',
+    './assets/css/**/*.css',
+    './config/*.php',
+  ],
   theme: {
-    extend: {
-      colors: {
-        'blue': '#414458',
-      },
-    },
+    extend: {},
   },
   plugins: [],
 }

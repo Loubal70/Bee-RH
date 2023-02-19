@@ -1,13 +1,27 @@
 {
-  "name": "bee-rh",
+  "name": "themosis-plugin",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Themosis framework boilerplate plugin.",
   "scripts": {
-    "build": "tailwind build assets/css/tailwind.css -o assets/css/tailwind.out.css",
-    "start": "tailwindcss -i assets/css/tailwind.css -o assets/css/tailwind.out.css --watch"
+    "build": "TAILWIND_MODE=build mix",
+    "start": "TAILWIND_MODE=watch mix watch",
+    "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
+  "author": "Themosis",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/themosis/theme/issues"
+  },
+  "homepage": "https://github.com/themosis/theme#readme",
   "devDependencies": {
+    "cross-env": "^5.2.0",
+    "laravel-mix": "^6.0.49"
+  },
+  "dependencies": {
+    "postcss": "^8.4.21",
     "tailwindcss": "^3.0.5"
   }
 }

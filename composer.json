@@ -1,16 +1,28 @@
 {
-    "name": "amphibee/bee-rh",
-    "require": {
-        "jenssegers/blade": "1.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "Amphibee\\BeeRh\\": "inc/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Louis BOULANGEr"
-        }
-    ]
+  "name": "amphibee/bee-rh",
+  "description": "Plugin themosis for RH in company",
+  "keywords": ["themosis", "plugin", "amphibee", "bee-rh"],
+  "authors": [
+    {
+      "name": "Louis BOULANGER",
+      "email": "louis.boulanger.work@gmail.com",
+      "homepage": "https://louis-boulanger.fr"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "repositories":[
+    {
+      "type":"composer",
+      "url":"https://wpackagist.org"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "composer/installers" : "~1.2"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  }
 }
