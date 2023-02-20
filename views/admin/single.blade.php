@@ -19,8 +19,17 @@
             <h3 class="font-display font-bold text-xl text-blue"> {{ __('Gestion des équipes', BEE_RH_TD) }} </h3>
         </div>
         <div class="p-4 basis-2/4">
-            <h3 class="font-display font-bold text-xl text-blue"> {{ __('Gestion des employés', BEE_RH_TD) }} </h3>
+            <h3 class="font-display font-bold text-xl text-blue">
+                {{ __('Gestion des employés', BEE_RH_TD) }}
+                <span class="text-sm font-light">{{ __('(Utilisateurs ayant le rôle employés)', BEE_RH_TD) }}</span>
+            </h3>
+            <ul class="mt-5 list-disc pl-7">
+                @foreach($employes as $employe)
+                    <li>
+                        {{ $employe->data->display_name }}
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </div>
-
 </div>

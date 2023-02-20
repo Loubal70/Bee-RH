@@ -4,6 +4,7 @@ namespace Themosis\BeeRH\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Themosis\BeeRH\Composers\AdminSingle;
 use Themosis\BeeRH\Composers\QuizzSingle;
 
 class ComposersServiceProvider extends ServiceProvider
@@ -12,7 +13,8 @@ class ComposersServiceProvider extends ServiceProvider
     {
         View::composers(
             [
-                QuizzSingle::class => '*',
+                AdminSingle::class => 'admin.single',
+                QuizzSingle::class => 'questionnaire.single',
             ]
         );
     }

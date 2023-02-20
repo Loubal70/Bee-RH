@@ -9,7 +9,13 @@ module.exports = {
     './config/*.php',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        yellowbee: {
+          500: '#fbde20',
+        },
+      }
+    },
   },
   plugins: [],
 }

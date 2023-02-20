@@ -7,5 +7,13 @@ use Themosis\Support\Facades\Route;
  */
 
 Route::any('singular', ['questionnaire', function () {
-    return view('questionnaire.single');
+    if ($user = wp_get_current_user()) {
+        if (in_array('administrator', $user->roles)) {
+            return view('questionnaire.single');
+        }
+        return redirect(home_url());
+    }
+
 }]);
+
+Route::post('/testlouis', [\Themosis\BeeRH\Controllers\SaveQuizController::class, 'store']);
