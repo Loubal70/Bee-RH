@@ -24,7 +24,7 @@ class AssetServiceProvider extends ServiceProvider
 
         Asset::add('bee-rh', $plugin->getUrl('dist/css/bee-rh.css'), [], $plugin->getHeader('version'))->to('front');
 
-        if ( is_admin() && isset($_GET['page']) && $_GET['page'] === 'amphibee-rh' ) {
+        if ( is_admin() && isset($_GET['page']) && ($_GET['page'] === 'amphibee-rh' || $_GET['page'] === 'employee-stats') ) {
             Asset::add('bee-rh', $plugin->getUrl('dist/css/bee-rh.css'), [], $plugin->getHeader('version'))->to('admin');
         }
     }

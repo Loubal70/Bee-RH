@@ -8,19 +8,19 @@ class AdminSingle extends Composer
 {
     public function compose($view)
     {
-        $view->with('employes', $this->getEmployees());
+        $view->with('employees', $this->getEmployees());
     }
 
     public function getEmployees(): array
     {
-        $args = array(
+        $employees = get_users([
             'role' => 'employees',
-            'orderby' => 'user_nicename',
-            'order' => 'ASC'
-        );
+            'orderby' => 'display_name',
+        ]);
 
-        $users_query = new WP_User_Query($args);
-
-        return $users_query->get_results();
+        return collect($employees)->map(function ($employee) {
+            $employee->stats_link = esc_url(admin_url('admin.php?page=employee-stats&id=' . $employee->ID));
+            return $employee;
+        })->all();
     }
 }

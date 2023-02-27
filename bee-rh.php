@@ -17,6 +17,7 @@
 use Themosis\Core\Application;
 
 define('BEE_RH_TD', 'bee-rh');
+define('DB_PREFIX', env('DATABASE_PREFIX', 'wp_'));
 
 /*
 |--------------------------------------------------------------------------
