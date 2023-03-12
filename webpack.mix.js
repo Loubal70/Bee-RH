@@ -16,3 +16,4 @@ mix
     .postCss("assets/css/bee-rh.css", "dist/css/", [
         require("tailwindcss"),
     ])
+    .js('assets/js/app.js', 'dist/js/app.min.js')

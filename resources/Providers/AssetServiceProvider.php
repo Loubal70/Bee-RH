@@ -23,6 +23,7 @@ class AssetServiceProvider extends ServiceProvider
         $plugin = $this->app->make('wp.plugin.bee-rh');
 
         Asset::add('bee-rh', $plugin->getUrl('dist/css/bee-rh.css'), [], $plugin->getHeader('version'))->to('front');
+        Asset::add('bee-rh', $plugin->getUrl('dist/js/app.min.js'), [], $plugin->getHeader('version'))->to('front');
 
         if ( is_admin() && isset($_GET['page']) && ($_GET['page'] === 'amphibee-rh' || $_GET['page'] === 'employee-stats') ) {
             Asset::add('bee-rh', $plugin->getUrl('dist/css/bee-rh.css'), [], $plugin->getHeader('version'))->to('admin');

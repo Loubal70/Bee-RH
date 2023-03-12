@@ -1,6 +1,7 @@
 <?php
 
 namespace Themosis\BeeRH\Composers;
+
 use Illuminate\Support\Composer;
 use Illuminate\Support\Str;
 
@@ -17,10 +18,9 @@ class QuizzSingle extends Composer
      */
     public static function getQuiz()
     {
-        $quiz = get_field('listing_quiz' );
+        $quiz = get_field('listing_quiz');
         foreach ($quiz as &$question) {
             $question["slug"] = "quiz_" . Str::slug($question["question"], '-');
-
         }
 
         return $quiz;

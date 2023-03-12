@@ -1,0 +1,16 @@
+.step-form__step.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+input[type="submit"].step-form__submit-btn {
+    @apply bg-yellowbee-500;
+}
+
+.step-form__step input.invalid,
+.step-form__step select.invalid,
+.step-form__step textarea.invalid {
+    border-color: #ff0000;
+}

@@ -5,9 +5,12 @@ namespace Themosis\BeeRH\PostTypes;
 use Action;
 use Illuminate\Support\ServiceProvider;
 use Themosis\Support\Facades\PostType;
+use WordPlate\Acf\ConditionalLogic;
+use WordPlate\Acf\Fields\Image;
 use WordPlate\Acf\Fields\Repeater;
 use WordPlate\Acf\Fields\Select;
 use WordPlate\Acf\Fields\Text;
+use WordPlate\Acf\Fields\TrueFalse;
 use WordPlate\Acf\Location;
 
 class Questionnaire extends ServiceProvider
@@ -68,17 +71,54 @@ class Questionnaire extends ServiceProvider
                     Repeater::make(__('Listes des questions', 'amphibee-rh'), 'listing_quiz')
                         ->fields([
                             Text::make(__('Question', 'amphibee-rh'), 'question')
-                                ->wrapper(['width' => '40%']),
+                                ->wrapper(['width' => '40%'])
+                                ->required(),
                             Select::make(__('Type de réponse', 'amphibee-rh'), 'type_answer')
                                 ->choices([
                                     'short_text' => 'Réponse courte textuelle',
-                                    'long_text' => 'Réponse longue textuelle'
+                                    'long_text' => 'Réponse longue textuelle',
+                                    'one_select' => 'Case à cocher',
                                 ])
                                 ->wrapper(['width' => '20%'])
                                 ->required(),
+                            Repeater::make(__('Réponses possibles', 'amphibee-rh'), 'possible_answer')
+                                ->fields([
+                                    Select::make(__('Pictogramme', 'amphibee-rh'), 'pictogramme')
+                                        ->choices([
+                                            'exploding_head' => '🤯',
+                                            'light_bulb' => '💡',
+                                            'boom' => '💥',
+                                            'ok_hand' => '👌',
+                                            'pinched_fingers' => '🤌',
+                                            'brain' => '🧠',
+                                            'eyes' => '👀',
+                                        ])
+                                        ->wrapper(['width' => '10%'])
+                                        ->returnFormat('label')
+                                        ->required(),
+                                    Select::make(__('Réponse', 'amphibee-rh'), 'answer')
+                                        ->choices([
+                                            '0-frustrante' => __('Frustrante', 'amphibee-rh'),
+                                            '100-inspirantes' => __('Inspirantes', 'amphibee-rh'),
+                                            '0-stressantes' => __('Stressantes', 'amphibee-rh'),
+                                            '30-tres_chargees' => __('Très chargées', 'amphibee-rh'),
+                                            '50-ok' => __('Ok', 'amphibee-rh'),
+                                            '100-stimulantes' => __('Stimulantes', 'amphibee-rh'),
+                                            '80-super' => __('Super', 'amphibee-rh'),
+                                        ])
+                                        ->wrapper(['width' => '90%'])
+                                        ->returnFormat('array')
+                                        ->required(),
+
+                                ])
+                                ->wrapper(['width' => '40%'])
+                                ->conditionalLogic([
+                                    ConditionalLogic::if('type_answer')->equals('one_select')
+                                ]),
                         ])
+                        ->layout('row')
                 ],
-                'layout' => 'block',
+                'layout' => 'row',
                 'location' => [
                     Location::if('post_type', '==', 'questionnaire'),
                 ],

@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class SaveQuizController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $champs = $request->all();
 
@@ -21,7 +21,12 @@ class SaveQuizController extends Controller
 
         foreach ($champs as $name => $value) {
             if (strpos($name, 'quiz_') === 0) {
-                $rules[$name] = 'required|string|max:255';
+                if(Str::startsWith($name, 'quiz_possible_')){
+                    $rules[$name] = 'required|array';
+                } else{
+                    $rules[$name] = 'required|string|max:255';
+                }
+
                 $show_name = Str::of($name)
                     ->after('quiz_')
                     ->replace('-', ' ')
@@ -41,19 +46,20 @@ class SaveQuizController extends Controller
                 ->withInput();
         }else{
             checkDatabase();
-
             // Traitement des données
             $collection = new Collection($champs);
             $data = $collection->filter(fn ($value, $key) => strpos($key, 'quiz_') === 0);
-            DB::table('rh_questionnaires')->insert([
-                'user_id' => get_current_user_id(),
-                'results' => $data->toJson(),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            dd($data->toJson());
+
+//            DB::table('rh_questionnaires')->insert([
+//                'user_id' => get_current_user_id(),
+//                'results' => $data->toJson(),
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ]);
 
             // Redirection vers une page de confirmation
-            return redirect('/confirmation');
+//            return redirect()->back();
         }
     }
 }
