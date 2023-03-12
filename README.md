@@ -1,4 +1,4 @@
-# Bee-RH 🐝
+# Bee-RH 🐝 [![plugin version](https://img.shields.io/badge/version-v1.0.0-color.svg)](https://github.com/Loubal70/Bee-RH/releases/latest)
 
 Bee-RH est un plugin conçu pour les responsables de ressources humaines qui souhaitent créer des questionnaires pour les employés de leur entreprise. Il permet une gestion efficace et simplifiée des processus de questionnaires, tout en fournissant des données précieuses pour aider les RH à prendre des décisions éclairées.
 
@@ -45,4 +45,4 @@ Bee-RH est facile à installer et à utiliser, avec une interface utilisateur in
 
 ## À faire
 
-[] Ajouter une fonctionnalité d'exportation de données pour permettre aux RH de télécharger les réponses des employés dans un format de fichier facilement utilisable.
+- [ ]  Ajouter une fonctionnalité d'exportation de données pour permettre aux RH de télécharger les réponses des employés dans un format de fichier facilement utilisable.
