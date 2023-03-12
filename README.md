@@ -45,4 +45,4 @@ Bee-RH est facile à installer et à utiliser, avec une interface utilisateur in
 
 ## À faire
 
-[ ] Ajouter une fonctionnalité d'exportation de données pour permettre aux RH de télécharger les réponses des employés dans un format de fichier facilement utilisable.
+[] Ajouter une fonctionnalité d'exportation de données pour permettre aux RH de télécharger les réponses des employés dans un format de fichier facilement utilisable.
