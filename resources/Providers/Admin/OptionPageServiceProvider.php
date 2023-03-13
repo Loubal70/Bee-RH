@@ -12,6 +12,12 @@ class OptionPageServiceProvider extends ServiceProvider
     {
         Action::add('admin_menu', [$this, 'add_settings_page']);
         Action::add('admin_menu', [$this, 'add_employee_stats_page']);
+        Action::add('admin_init', [$this, 'register_settings']);
+    }
+
+    public function register_settings()
+    {
+        add_option( 'bee-rh-slack', '' );
     }
 
     public function add_settings_page()
@@ -21,10 +27,19 @@ class OptionPageServiceProvider extends ServiceProvider
             __('Amphibee RH', BEE_RH_TD),      // Titre du menu
             __('manage_options', BEE_RH_TD),   // Capacité requise pour accéder à la page
             __('amphibee-rh', BEE_RH_TD),      // Slug de la page de réglages
-            function () {
-                echo view('admin.single');
-            }
+            [$this, 'settings_view']
         );
+    }
+
+    public function settings_view()
+    {
+        $slack_url = get_option('bee-rh-slack');
+
+        if(empty($slack_url)){
+            echo view('admin.settings');
+        } else{
+            echo view('admin.single');
+        }
     }
 
     public function add_employee_stats_page()

@@ -2,7 +2,6 @@
 
 namespace Themosis\BeeRH\Composers;
 use Illuminate\Support\Composer;
-use WP_User_Query;
 
 class AdminSingle extends Composer
 {

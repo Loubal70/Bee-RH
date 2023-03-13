@@ -26,6 +26,8 @@ return [
     |
     */
     'providers'   => [
+        \Themosis\BeeRH\Providers\SessionServiceProvider::class,
+        \Themosis\BeeRH\Providers\SendSlackNotificationServiceProvider::class,
         \Themosis\BeeRH\Providers\AssetServiceProvider::class,
         \Themosis\BeeRH\Providers\RouteServiceProvider::class,
         \Themosis\BeeRH\Providers\Admin\OptionPageServiceProvider::class,
